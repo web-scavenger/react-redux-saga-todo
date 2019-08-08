@@ -6,7 +6,7 @@ import {
     VisibilityFilters, 
     INIT_DATA_SUCCESS, 
     INIT_DATA_ERROR
-} from './actions';
+} from '../actions/actions';
 
 const initialState = {
     visibilityFilter: VisibilityFilters.SHOW_ALL,

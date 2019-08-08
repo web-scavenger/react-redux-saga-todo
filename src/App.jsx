@@ -1,7 +1,7 @@
 import React, {Fragment, Component} from 'react';
 
 import { connect } from 'react-redux';
-import { ADD_TODO_ASYNC, GET_INIT_DATA_ASYNC } from './actions';
+import { ADD_TODO_ASYNC, GET_INIT_DATA_ASYNC } from './actions/actions';
 
 
 class App extends Component{

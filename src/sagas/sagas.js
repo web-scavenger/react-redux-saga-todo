@@ -5,7 +5,7 @@ import {
     INIT_DATA_SUCCESS, 
     GET_INIT_DATA_ASYNC,
     INIT_DATA_ERROR,
- } from './actions'
+ } from '../actions/actions'
 
 const url = 'https://jsonplaceholder.typicode.com/todos'
 
