@@ -25,7 +25,7 @@ class App extends Component{
   }
 
   render(){
-    console.log(this.props.error)
+    console.log(this.props)
     return(
       <Fragment>
         <div>{this.props.error}</div>

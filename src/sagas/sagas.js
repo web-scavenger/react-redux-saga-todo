@@ -1,4 +1,4 @@
-import { all, put, call, takeEvery, takeLatest } from 'redux-saga//effects'
+import { all, put, call, takeEvery, takeLatest } from 'redux-saga/effects'
 import { 
     ADD_TODO_ASYNC, 
     ADD_TODO, 
