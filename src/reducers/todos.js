@@ -9,7 +9,7 @@ export const initialTodoState = {
     todos: []
 };
 
-const todoApp = (state = initialTodoState, action) => {
+export const todos = (state = initialTodoState, action) => {
     switch (action.type) {
         case ADD_TODO:
             return {
@@ -45,11 +45,7 @@ const todoApp = (state = initialTodoState, action) => {
                 })
             }
         default: {
-            return {
-                ...state
-            }
+            return {...state}
         }
     }
 };
-
-export default todoApp;

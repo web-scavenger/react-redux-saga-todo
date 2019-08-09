@@ -3,11 +3,10 @@ import {
 } from '../actions/actions';
 
 
-const onDataError = (state = false, action) => {
+const onDataError = (state = {error: null}, action) => {
     switch (action.type) {
         case INIT_DATA_ERROR:
             return {
-                ...state,
                 error: action.message
             }
 

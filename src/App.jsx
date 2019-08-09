@@ -25,7 +25,6 @@ class App extends Component{
   }
 
   render(){
-    console.log(this.props)
     return(
       <Fragment>
         <div>{this.props.error}</div>
@@ -36,7 +35,7 @@ class App extends Component{
           <div>
             
             <ul>
-              {this.props.todos.map((todo) =>
+              {this.props.todos.length && this.props.todos.map((todo) =>
                 <li key={todo.id}>{todo.title}</li>
               )}
             </ul>
@@ -50,8 +49,8 @@ class App extends Component{
 
 const mapStateToProps = (state) => {
   return{
-    todos: state.todos,
-    error: state.error
+    todos: state.todos.todos,
+    error: state.onDataError.error
   }
 }
 
