@@ -11,7 +11,7 @@ class App extends Component{
   componentDidMount(){
     this.props.onFetchInitData()
   }
-
+	//test coment for test commit
   addTodo = () => {
     const { value } = this.addTodoInput;
     this.props.onAddTodo(value);
