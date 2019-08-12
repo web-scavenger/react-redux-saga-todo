@@ -1,14 +1,16 @@
-import React, {Fragment, Component} from 'react';
+import React, { Fragment, Component } from 'react';
 
 import { connect } from 'react-redux';
-import { ADD_TODO_ASYNC, GET_INIT_DATA_ASYNC } from './actions/actions';
+import { ADD_TODO, GET_INIT_DATA_ASYNC } from './actions/actions';
+
+import { Condition } from './components/Condition'
 
 
-class App extends Component{
+class App extends Component {
 
   addTodoInput = React.createRef();
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.onFetchInitData()
   }
 
@@ -19,48 +21,51 @@ class App extends Component{
   }
 
   keyPressed = (e) => {
-        if (e.key === "Enter") {
-          this.addTodo()
-        }
+    if (e.key === "Enter") {
+      this.addTodo()
+    }
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <Fragment>
         <div>{this.props.error}</div>
-          <div>
-            <input type="text" ref={input => this.addTodoInput = input} onKeyPress={this.keyPressed}/>
-            <button onClick={this.addTodo} >ADD TODO</button>
-          </div>
-          <div>
-            
-            <ul>
+        <div>
+          <input type="text" ref={input => this.addTodoInput = input} onKeyPress={this.keyPressed} />
+          <button onClick={this.addTodo} >ADD TODO</button>
+        </div>
+        <div>
+
+          <ul>
+            <Condition value={!!this.props.todos.length} message={'You have not any Todos'}>
               {this.props.todos.length && this.props.todos.map((todo) =>
                 <li key={todo.id}>{todo.title}</li>
               )}
-            </ul>
-          </div>
+            </Condition>
+
+          </ul>
+        </div>
       </Fragment>
     )
   }
-  
+
 }
 
 
 const mapStateToProps = (state) => {
-  return{
+  return {
     todos: state.todos.todos,
     error: state.onDataError.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
     onAddTodo: (title) => {
-      dispatch({type: ADD_TODO_ASYNC, title})
+      dispatch({ type: ADD_TODO, title })
     },
     onFetchInitData: () => {
-      dispatch({type: GET_INIT_DATA_ASYNC})
+      dispatch({ type: GET_INIT_DATA_ASYNC })
     }
   }
 }

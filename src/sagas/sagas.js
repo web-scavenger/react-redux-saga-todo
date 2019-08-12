@@ -25,15 +25,15 @@ const fetchData = async (url) => {
     })
 }
 
-export function* addTodo(action) {
-    const { title } = action
-    yield call(delay, 500);
-    yield put({type: ADD_TODO, title})
-}
+// export function* addTodo(action) {
+//     const { title } = action
+//     yield call(delay, 500);
+//     yield put({type: ADD_TODO, title})
+// }
 
-export function* onAddTodoAsync() {
-    yield takeEvery(ADD_TODO_ASYNC, addTodo)
-}
+// export function* onAddTodoAsync() {
+//     yield takeEvery(ADD_TODO_ASYNC, addTodo)
+// }
 
 export function* addInitialData(){
     try{
@@ -55,7 +55,7 @@ export function* onAddFetchedDataAsync(){
 
 export default function* rootSaga(){
     yield all([
-        onAddTodoAsync(), 
+        // onAddTodoAsync(), 
         onAddFetchedDataAsync()
     ])
 }
