@@ -1,7 +1,5 @@
-import { all, put, call, takeEvery, takeLatest } from 'redux-saga/effects'
+import { all, put, call , takeLatest } from 'redux-saga/effects'
 import { 
-    ADD_TODO_ASYNC, 
-    ADD_TODO, 
     INIT_DATA_SUCCESS, 
     GET_INIT_DATA_ASYNC,
     INIT_DATA_ERROR,
@@ -10,7 +8,6 @@ import {
 const url = 'https://jsonplaceholder.typicode.com/todos'
 
 
-const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
 const fetchData = async (url) => {
     const response = await fetch(url);
@@ -24,16 +21,6 @@ const fetchData = async (url) => {
         
     })
 }
-
-// export function* addTodo(action) {
-//     const { title } = action
-//     yield call(delay, 500);
-//     yield put({type: ADD_TODO, title})
-// }
-
-// export function* onAddTodoAsync() {
-//     yield takeEvery(ADD_TODO_ASYNC, addTodo)
-// }
 
 export function* addInitialData(){
     try{
@@ -55,7 +42,6 @@ export function* onAddFetchedDataAsync(){
 
 export default function* rootSaga(){
     yield all([
-        // onAddTodoAsync(), 
         onAddFetchedDataAsync()
     ])
 }

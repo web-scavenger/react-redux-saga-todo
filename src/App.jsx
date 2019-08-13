@@ -1,10 +1,27 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux';
-import { ADD_TODO, GET_INIT_DATA_ASYNC } from './actions/actions';
+import { GET_INIT_DATA_ASYNC } from './actions/actions';
 
 import { Condition } from './components/Condition'
+import TodoInput from './components/TodoInput';
 
+import config from './config';
+
+const styles = theme => ({
+  "mainFragment": {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: config.colors.bgGray,
+    color: config.colors.mainLightColor
+  },
+  'container': {
+    width: '70%',
+  },
+});
 
 class App extends Component {
 
@@ -13,39 +30,32 @@ class App extends Component {
   componentDidMount() {
     this.props.onFetchInitData()
   }
-	//test coment for test commit
-  addTodo = () => {
-    const { value } = this.addTodoInput;
-    this.props.onAddTodo(value);
-    this.addTodoInput.value = ''
-  }
 
-  keyPressed = (e) => {
-    if (e.key === "Enter") {
-      this.addTodo()
-    }
-  }
+  
 
   render() {
+    const { classes } = this.props;
     return (
-      <Fragment>
-        <div>{this.props.error}</div>
-        <div>
-          <input type="text" ref={input => this.addTodoInput = input} onKeyPress={this.keyPressed} />
-          <button onClick={this.addTodo} >ADD TODO</button>
-        </div>
-        <div>
+      <div className={classes['mainFragment']}>
+        <div className={classes['container']}>
+          <Condition value={!!this.props.error} message={null}>
+            {this.props.error}
+          </Condition>
+          <TodoInput />
+          <div>
 
-          <ul>
-            <Condition value={!!this.props.todos.length} message={'You have not any Todos'}>
-              {this.props.todos.length && this.props.todos.map((todo) =>
-                <li key={todo.id}>{todo.title}</li>
-              )}
-            </Condition>
+            <ul>
+              <Condition value={!!this.props.todos.length} message={'You have not any Todos'}>
+                {this.props.todos.length && this.props.todos.map((todo) =>
+                  <li key={todo.id}>{todo.title}</li>
+                )}
+              </Condition>
 
-          </ul>
+            </ul>
+          </div>
         </div>
-      </Fragment>
+
+      </div>
     )
   }
 
@@ -61,18 +71,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTodo: (title) => {
-      dispatch({ type: ADD_TODO, title })
-    },
     onFetchInitData: () => {
       dispatch({ type: GET_INIT_DATA_ASYNC })
     }
   }
 }
 
-export default connect(
+const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps
-
 )(App)
+
+export default withStyles(styles)(withConnect)
 
