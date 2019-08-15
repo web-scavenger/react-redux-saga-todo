@@ -63,6 +63,8 @@ const TodoInput = ({ classes, onAddTodo }) => {
     )
 };
 
+const mapStateToProps = (state) => ({})
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddTodo: (title) => {
@@ -71,6 +73,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const withConnect = connect(null, mapDispatchToProps)(TodoInput)
+const withConnect = connect(mapStateToProps, mapDispatchToProps)(TodoInput)
 
 export default withStyles(style)(withConnect)

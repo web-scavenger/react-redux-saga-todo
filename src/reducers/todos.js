@@ -9,33 +9,26 @@ export const initialTodoState = {
     todos: []
 };
 
-export const todos = (state = initialTodoState, action) => {
+export const todos = (state = initialTodoState.todos, action) => {
     switch (action.type) {
         case ADD_TODO:
-            return {
+            return [
                 ...state,
-                todos: [
-                    ...state.todos,
-                    {
-                        userId: 1,
-                        id: Date.now().toString(),
-                        title: action.title,
-                        completed: false
-                    }
-                ]
-            };
+                {
+                    userId: 1,
+                    id: Date.now().toString(),
+                    title: action.title,
+                    completed: false
+                }
+            ]
         case INIT_DATA_SUCCESS:
-            return {
+            return [
                 ...state,
-                todos: [
-                    ...state.todos,
-                    ...action.data
-                ]
-            }
+                ...action.data
+            ]
         case TOGGLE_TODO:
-            return {
-                ...state,
-                todos: state.todos.map((todo, index) => {
+            return [
+                state.map((todo, index) => {
                     if (action.id === index) {
                         return {
                             ...todo,
@@ -43,9 +36,9 @@ export const todos = (state = initialTodoState, action) => {
                         }
                     }
                 })
-            }
+            ]
         default: {
-            return {...state}
+            return state
         }
     }
 };

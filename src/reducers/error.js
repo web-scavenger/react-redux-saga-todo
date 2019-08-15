@@ -11,9 +11,7 @@ const onDataError = (state = {error: null}, action) => {
             }
 
         default: {
-            return {
-                ...state
-            }
+            return state
         }
     }
 };

@@ -6,6 +6,7 @@ import { GET_INIT_DATA_ASYNC } from './actions/actions';
 
 import { Condition } from './components/Condition'
 import TodoInput from './components/TodoInput';
+import Todos from './components/Todos';
 
 import config from './config';
 
@@ -41,8 +42,11 @@ class App extends Component {
           <Condition value={!!this.props.error} message={null}>
             {this.props.error}
           </Condition>
+
           <TodoInput />
-          <div>
+          <Todos />
+
+          {/* <div>
 
             <ul>
               <Condition value={!!this.props.todos.length} message={'You have not any Todos'}>
@@ -52,7 +56,7 @@ class App extends Component {
               </Condition>
 
             </ul>
-          </div>
+          </div> */}
         </div>
 
       </div>
