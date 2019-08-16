@@ -1,20 +1,24 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core';
 
-import config from '../config'
+import config from '../config';
 
 
 const styles = () => ({
 
-})
+});
+
+const displayName = 'Item';
 
 const Item = (props) => {
-    const { styles, item } = props;
-    return(
-        <Fragment>
-                {item.title}
-        </Fragment>
-    )
-}
+  const { styles, item } = props;
+  return (
+    <div>
+      {item.title}
+    </div>
+  );
+};
 
-export default withStyles(styles)(Item)
+Item.displayName = displayName;
+
+export default withStyles(styles)(Item);

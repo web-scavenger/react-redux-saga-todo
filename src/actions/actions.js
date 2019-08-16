@@ -16,39 +16,39 @@ export const VisibilityFilters = {
     SHOW_ALL: 'SHOW_ALL',
     SHOW_COMPLETED: 'SHOW_COMPLETED',
     SHOW_ACTIVE: 'SHOW_ACTIVE'
-  }
+};
 
 export const addInitFetchedData = (data) => {
     return {
         type: INIT_DATA_SUCCESS,
         data
-    }
-} 
+    };
+}; 
 
 export const addTodo = (text) => {
     return{
         type: ADD_TODO,
         text
-    }
+    };
 };
 
 export const toggleTodo = (id) => {
     return {
         type: TOGGLE_TODO,
         id
-    }
+    };
 };
 
 export const setVisibilityFilter = (filter) =>{
-    return { type: SET_VISIBILITY_FILTER, filter }
-}
+    return { type: SET_VISIBILITY_FILTER, filter };
+};
 
 export const updateInput = (text) => {
     return {
         type: UPDATE_INPUT,
         text
-    }
-}
+    };
+};
 
-export const clearInput = () => ({type: CLEAR_INPUT})
+export const clearInput = () => ({type: CLEAR_INPUT});
 

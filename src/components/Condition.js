@@ -1,4 +1,3 @@
-export const  Condition = ({ value, message, children }) => {
-    return value ? children : message;
-}
-  
+const Condition = ({ value, message, children }) => (value ? children : message);
+
+export default Condition;
