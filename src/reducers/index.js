@@ -5,9 +5,11 @@ import { combineReducers } from 'redux';
 // } from '../actions/actions';
 
 import{ todos } from './todos';
+import { input } from './input';
 import onDataError from './error';
 
 export default combineReducers({
     todos,
-    onDataError
+    onDataError,
+    input
 })

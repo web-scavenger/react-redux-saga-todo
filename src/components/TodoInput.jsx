@@ -2,11 +2,11 @@ import React, { Fragment, useRef } from "react";
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 
-import { ADD_TODO } from '../actions/actions';
+import { ON_SUBMIT_INPUT, UPDATE_INPUT } from '../actions/actions';
 
 import config from '../config'
 
-const style = (theme) => ({
+const style = () => ({
     input: {
         width: 'calc(100% - 20px)',
         padding: '10px 5px',
@@ -21,54 +21,39 @@ const style = (theme) => ({
             outlineWidth: '0',
             borderBottom: `2px solid ${config.colors.borderColorFocus}`,
         }
-    },
-    button:{
-        width: 'calc(100% - 10px)',
-        padding: '10px 0px',
-        margin: '15px 5px',
-        border: `2px solid ${config.colors.borderColor}`,
-        backgroundColor: config.colors.bgGray,
-        color: config.colors.mainLightColor,
-        cursor: 'pointer',
-        transition: 'all 0.5s ease-out',
-        '&:hover': {
-            outlineWidth: '0',
-            border: `2px solid ${config.colors.borderColorFocus}`,
-            backgroundColor: config.colors.borderColorFocus,
-        }
     }
-
 })
 
-const TodoInput = ({ classes, onAddTodo }) => {
+const TodoInput = ( props ) => {
+    const { classes, input, onChangeInput, onAddTodo } = props;
 
-    let todoInput = useRef();
-
-    const addTodo = () => {
-        const value = todoInput.current.value
-        onAddTodo(value);
-        todoInput.current.value = '';
+    const changeHandler = ({ target : { value }}) => {
+        onChangeInput(value)
     }
 
     const keyPressed = (e) => {
         if (e.key === "Enter") {
-            addTodo()
+            onAddTodo(input)
         }
     }
-    return (
-        <Fragment>
-            <input className={classes.input} type="text" ref={todoInput} onKeyPress={keyPressed} />
-            <button className={classes.button} onClick={addTodo} >ADD TODO</button>
-        </Fragment>
-    )
+
+    return <input className={classes.input} type="text" value={input} onChange={changeHandler} onKeyPress={keyPressed} />
+
 };
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => {
+    return {
+        input: state.input
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddTodo: (title) => {
-            dispatch({ type: ADD_TODO, title })
+            dispatch({ type: ON_SUBMIT_INPUT, title })
+        },
+        onChangeInput: (text) => {
+            dispatch({ type: UPDATE_INPUT, text})
         }
     }
 }

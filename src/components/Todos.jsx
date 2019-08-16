@@ -21,7 +21,6 @@ const Todos = (props) => {
                     <Item item={item} key={item.id}/>
                 ))}
             </Condition>
-
         </Fragment>
     )
 }

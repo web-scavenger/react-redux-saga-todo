@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
+import { withStyles } from '@material-ui/core';
 
 import config from '../config'
-import { withStyles } from '@material-ui/core';
 
 
 const styles = () => ({
@@ -12,9 +12,7 @@ const Item = (props) => {
     const { styles, item } = props;
     return(
         <Fragment>
-            <div>
                 {item.title}
-            </div>
         </Fragment>
     )
 }

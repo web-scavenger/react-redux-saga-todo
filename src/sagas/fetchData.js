@@ -1,13 +1,11 @@
-import { all, put, call , takeLatest } from 'redux-saga/effects'
+import { put, call , takeLatest } from 'redux-saga/effects'
 import { 
     INIT_DATA_SUCCESS, 
     GET_INIT_DATA_ASYNC,
     INIT_DATA_ERROR,
  } from '../actions/actions'
 
-const url = 'https://jsonplaceholder.typicode.com/todos'
-
-
+import { DATA_URL } from '../constants'
 
 const fetchData = async (url) => {
     const response = await fetch(url);
@@ -24,8 +22,7 @@ const fetchData = async (url) => {
 
 export function* addInitialData(){
     try{
-
-        const data = yield call(fetchData, url)
+        const data = yield call(fetchData, DATA_URL)
 
         yield put({type: INIT_DATA_SUCCESS, data})
 
@@ -38,10 +35,4 @@ export function* addInitialData(){
 
 export function* onAddFetchedDataAsync(){
     yield takeLatest(GET_INIT_DATA_ASYNC, addInitialData)
-}
-
-export default function* rootSaga(){
-    yield all([
-        onAddFetchedDataAsync()
-    ])
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 import { connect } from 'react-redux';
@@ -7,10 +7,11 @@ import { GET_INIT_DATA_ASYNC } from './actions/actions';
 import { Condition } from './components/Condition'
 import TodoInput from './components/TodoInput';
 import Todos from './components/Todos';
+import AddButton from './components/AddButton';
 
 import config from './config';
 
-const styles = theme => ({
+const styles = () => ({
   "mainFragment": {
     width: '100%',
     height: '100%',
@@ -24,47 +25,28 @@ const styles = theme => ({
   },
 });
 
-class App extends Component {
+const App = ( props ) => {
+  const { onFetchInitData, classes, error } = props;
 
-  addTodoInput = React.createRef();
+  useEffect(() => {
+    onFetchInitData()
+  });
 
-  componentDidMount() {
-    this.props.onFetchInitData()
-  }
-
-  
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes['mainFragment']}>
+  return(
+    <div className={classes['mainFragment']}>
         <div className={classes['container']}>
-          <Condition value={!!this.props.error} message={null}>
-            {this.props.error}
+          <Condition value={!!error} message={null}>
+            {error}
           </Condition>
 
           <TodoInput />
+          <AddButton />
           <Todos />
 
-          {/* <div>
-
-            <ul>
-              <Condition value={!!this.props.todos.length} message={'You have not any Todos'}>
-                {this.props.todos.length && this.props.todos.map((todo) =>
-                  <li key={todo.id}>{todo.title}</li>
-                )}
-              </Condition>
-
-            </ul>
-          </div> */}
         </div>
-
       </div>
-    )
-  }
-
+  )
 }
-
 
 const mapStateToProps = (state) => {
   return {
