@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 import { ON_SUBMIT_INPUT, UPDATE_INPUT } from '../actions/actions';
 
@@ -13,13 +14,13 @@ const style = () => ({
     textAlign: 'center',
     margin: '15px 5px',
     border: 'none',
-    borderBottom: `2px solid ${config.colors.borderColor}`,
-    backgroundColor: config.colors.bgGray,
-    color: config.colors.mainLightColor,
-    transition: 'all 0.5s ease-out',
+    // borderBottom: `2px solid ${config.colors.borderColor}`,
+    // backgroundColor: config.colors.bgGray,
+    // color: config.colors.mainLightColor,
+    // transition: 'all 0.5s ease-out',
     '&:focus': {
       outlineWidth: '0',
-      borderBottom: `2px solid ${config.colors.borderColorFocus}`,
+      // borderBottom: `2px solid ${config.colors.borderColorFocus}`,
     },
   },
 });
@@ -41,7 +42,19 @@ const TodoInput = (props) => {
     }
   };
 
-  return <input className={classes.input} type="text" value={input} onChange={changeHandler} onKeyPress={keyPressed} />;
+  return (
+    <TextField
+      type="text"
+      className={classes.input}
+      value={input}
+      onChange={changeHandler}
+      onKeyPress={keyPressed}
+      label="With placeholder"
+      placeholder="Placeholder"
+    />
+  );
+
+  // return <input className={classes.input} type="text" value={input} onChange={changeHandler} onKeyPress={keyPressed} />;
 };
 
 TodoInput.displayName = displayName;

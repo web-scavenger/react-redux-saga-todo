@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 import { ON_SUBMIT_INPUT } from '../actions/actions';
 
 import config from '../config';
@@ -12,14 +13,14 @@ const styles = () => ({
     padding: '10px 0px',
     margin: '15px 5px',
     border: `2px solid ${config.colors.borderColor}`,
-    backgroundColor: config.colors.bgGray,
+    // backgroundColor: config.colors.bgGray,
     color: config.colors.mainLightColor,
     cursor: 'pointer',
     transition: 'all 0.5s ease-out',
     '&:hover': {
       outlineWidth: '0',
       border: `2px solid ${config.colors.borderColorFocus}`,
-      backgroundColor: config.colors.borderColorFocus,
+      // backgroundColor: config.colors.borderColorFocus,
     },
   },
 });
@@ -33,7 +34,17 @@ const AddButton = (props) => {
     onAddTodo(input);
   };
 
-  return <button className={classes.button} type="button" onClick={addTodo}>ADD TODO</button>;
+  return (
+    <Button
+      className={classes.button}
+      type="button"
+      ariant="contained"
+      color="primary"
+      onClick={addTodo}
+    >
+      ADD TODO
+    </Button>
+  );
 };
 
 AddButton.displayName = displayName;
