@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { GET_INIT_DATA_ASYNC } from './actions/actions';
 
 import {
-  TodoInput, Todos, AddButton, Condition,
+  TodoInput, Todos, AddButton, Condition, Header,
 } from './components';
 
 import config from './config';
@@ -15,10 +15,14 @@ const styles = () => ({
     width: '100%',
     height: '100%',
     display: 'flex',
-    padding: '20px 0px',
+    flexDirection: 'column',
+    paddingBottom: '20px',
     justifyContent: 'center',
-    backgroundColor: config.colors.bgGray,
-    color: config.colors.mainLightColor,
+    alignItems: 'center',
+    textAlign: 'center',
+    fontFamily: 'Roboto, sans-serif',
+    backgroundColor: config.colors.mainBG,
+    color: config.colors.themeFont,
   },
   container: {
     width: '70%',
@@ -36,11 +40,12 @@ const App = (props) => {
 
   return (
     <div className={classes.mainFragment}>
+      <Header>Todo List</Header>
+
       <div className={classes.container}>
         <Condition value={!!error} message={null}>
           {error}
         </Condition>
-
         <TodoInput />
         <AddButton />
         <Todos />

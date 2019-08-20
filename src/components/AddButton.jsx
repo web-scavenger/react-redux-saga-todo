@@ -13,13 +13,15 @@ const styles = () => ({
     padding: '10px 0px',
     margin: '15px 5px',
     border: `2px solid ${config.colors.borderColor}`,
-    // backgroundColor: config.colors.bgGray,
-    color: config.colors.mainLightColor,
+    background: config.colors.btnBG,
+    // color: config.colors.themeFont,
     cursor: 'pointer',
     transition: 'all 0.5s ease-out',
     '&:hover': {
       outlineWidth: '0',
       border: `2px solid ${config.colors.borderColorFocus}`,
+      background: config.colors.btnBG,
+
       // backgroundColor: config.colors.borderColorFocus,
     },
   },
@@ -37,7 +39,7 @@ const AddButton = (props) => {
   return (
     <Button
       className={classes.button}
-      type="button"
+      // type="button"
       ariant="contained"
       color="primary"
       onClick={addTodo}
