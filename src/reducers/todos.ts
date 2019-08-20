@@ -6,11 +6,24 @@ import {
 } from '../actions/actions';
 
 
-export const initialTodoState = {
-  todos: [],
-};
+export interface TodoState {
+  userId: number
+  id: number | string
+  title: string 
+  completed: boolean
+}
 
-export const todos = (state = initialTodoState.todos, action) => {
+export interface TodoAction {
+  type: string
+  data?: TodoState[]
+  id?: number | string
+  title?: string 
+}
+
+
+const initialState: TodoState[] = []
+
+export const todos = (state = initialState, action: TodoAction) => {
   switch (action.type) {
     case ADD_TODO:
       return [
